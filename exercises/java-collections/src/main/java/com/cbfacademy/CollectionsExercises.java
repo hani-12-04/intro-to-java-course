@@ -68,10 +68,10 @@ public class CollectionsExercises {
         arrayDeque.add(9);
 
         //  - print the first element of the queue on the screen
-        System.out.print(arrayDeque.getFirst());
+        System.out.print(arrayDeque.peekFirst());
 
         //  - print the last element of the queue on the screen
-        System.out.print(arrayDeque.getLast());
+        System.out.print(arrayDeque.peekLast());
 
         //  - invoke the method poll() on the queue and print the result on the screen
         System.out.print(arrayDeque.poll());
@@ -106,7 +106,7 @@ public class CollectionsExercises {
         hm.put(6, "Rust");
 
         //  - determine the set of keys from the map and print it on the screen
-        System.out.print(hm.KeySet());
+        System.out.print(hm.keySet());
 
         //  - determine the set of values from the map and print it on the screen
         System.out.print(hm.values());
