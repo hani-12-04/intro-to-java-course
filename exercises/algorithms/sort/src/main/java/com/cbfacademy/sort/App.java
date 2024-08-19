@@ -1,8 +1,5 @@
 package com.cbfacademy.sort;
-
 import java.util.Arrays;
-
-import com.cbfacademy.sort.QuickSort;
 
 public class App {
     public static void main(String[] args) {
