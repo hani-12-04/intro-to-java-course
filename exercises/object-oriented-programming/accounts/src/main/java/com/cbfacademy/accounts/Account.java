@@ -1,41 +1,40 @@
 package com.cbfacademy.accounts;
 
 public class Account {
+    // Private member variables
+    private int accountNumber;
+    private double balance;
 
-private int accountNumber;
-private double balance;
-
-public Account(int accountNumber, double balance){
-    this.accountNumber = accountNumber;
-    this.balance = balance;
-    
-}
-
-// return the current account balance
-public double getBalance(){
-    return this.balance;
-}
-
-// return account number
-public int getAccountNumber(){
-    return this.accountNumber;
-}
-
-// desposit the funds to the account and return the new balance
-public double deposit(double amount){
-    this.balance += amount;
-    return this.balance;
-}
-
-// withdraw funds from the account and returns the requested amount or 0 if the account has an insufficient balance
-public double withdraw(double requested){
-    if (requested < 0 || this.balance < requested){
-        return 0;
-    } else {
-        this.balance -= requested;
-        return requested;
+    // Constructor to initialise the account number and balance
+    public Account(int accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
     }
-    
-}
-}
 
+    // Getter for balance
+    public double getBalance() {
+        return balance;
+    }
+
+    // Getter for account number
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    // Method to deposit funds into the account
+    public double deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+        return balance;
+    }
+
+    // Method to withdraw funds from the account
+    public double withdraw(double requested) {
+        if (requested > 0 && requested <= balance) {
+            balance -= requested;
+            return requested;
+        }
+        return 0; // Return 0 if insufficient funds or invalid amount
+    }
+}

@@ -1,29 +1,27 @@
 package com.cbfacademy.accounts;
 
 public class SavingsAccount extends Account {
-
     private double interestRate;
 
-    public SavingsAccount (int accountNumber, double balance, double interestRate){
+    // Constructor to initialise the account number, balance, and interest rate
+    public SavingsAccount(int accountNumber, double balance, double interestRate) {
         super(accountNumber, balance);
         this.interestRate = interestRate;
     }
-    
-    public void applyInterest(){
-        deposit(getBalance() * interestRate)
+
+    // Method to apply interest to the balance
+    public void applyInterest() {
+        double interest = getBalance() * interestRate;
+        deposit(interest); // Using deposit to update balance
     }
 
-    public double getInterestRate(){
-        return this.interestRate;
+    // Getter for interest rate
+    public double getInterestRate() {
+        return interestRate;
     }
 
-    public void setInterestRate(double interestRate){
-        if (interestRate => 0) {
-            this.interestRate = interestRate;
-        }
+    // Setter for interest rate
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
-    }
-    
-
-
 }
