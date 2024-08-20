@@ -2,7 +2,13 @@ package com.cbfacademy;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class CollectionsAssignment {
 
@@ -16,7 +22,15 @@ public class CollectionsAssignment {
      */
     public static void removeSmallInts(List<Integer> list, int minValue) {
         // Your solution must traverse the list from last to first element
-        // removing any values less than minValue.
+        ListIterator<Integer> iterator = list.listIterator(list.size());
+
+        while(iterator.hasPrevious()){
+            int value = iterator.previous(); //acess the previous element
+            if(value < minValue) {
+                iterator.remove(); // removes any valyes less tan minValue
+            }
+
+        }
     }
 
     /**
@@ -28,7 +42,11 @@ public class CollectionsAssignment {
      */
     public static boolean containsDuplicates(Collection<Integer> integers) {
         // Your solution must not use any loops.
-        return false;
+        //Using HashSet to track the unique elements
+        Set<Integer> uniqueElements = new HashSet<>(integers);
+
+        //if the size of the set is less than the size of the collection, there are duplicates
+        return uniqueElements.size() < integers.size();
     }
 
     /**
@@ -48,7 +66,10 @@ public class CollectionsAssignment {
      */
     public static ArrayList<Integer> inEither(Collection<Integer> ints1, Collection<Integer> ints2) {
         // This must be done with no loops.
-        return new ArrayList<Integer>();
+        // Using a TreeSet to automatically sort an remove duplicates
+        Set<Integer> resultSet = new TreeSet<>(ints1);
+        resultSet.addAll(ints2); // adding all elements from the second collection
+        return new ArrayList<>(resultSet);
     }
 
     /**
@@ -66,7 +87,11 @@ public class CollectionsAssignment {
      */
     public static ArrayList<Integer> inBoth(Collection<Integer> ints1, Collection<Integer> ints2) {
         // This must be done with no loops.
-        return new ArrayList<>();
+        //Using TreeSet to automatically sort the elements
+        Set<Integer> resultSet = new TreeSet<>(ints1);
+
+        resultSet.retainAll(ints2);
+        return new ArrayList<>(resultSet); //converting to set to an ArrayList
     }
 
     /**
@@ -80,15 +105,31 @@ public class CollectionsAssignment {
      * @return the most frequently occurring String
      */
     public static String mostFrequent(List<String> list) {
+        if (list.isEmpty()) {
         // You should solve this problem in two stages: First iterate through
         // the list to count occurrences of each String. Then iterate through
         // your counts to find the largest. You'll need a collection that allows
         // you to store a mapping from Strings to counts.
         // No nested loops or non-enhanced for-loops are allowed.
-        return "";
-    }
+        return ""; //returning an empty string if the list is empty
+        }
+        Map<String, Integer> frequencyMap= new HashMap<>();
+        for (String s : list) {
+            frequencyMap.put(s, frequencyMap.getOrDefault(s, 0) + 1);
+        }
 
+        String mostFrequentString = null;
+        int maxCount =0;
+
+        for (Map.Entry<String, Integer> entry: frequencyMap.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                mostFrequentString = entry.getKey();
+            }
+        }
+        return mostFrequentString;
+    }
     public static String getName() {
-        return "Collections Assignment";
+         return "Collections Assignment";
     }
 }
