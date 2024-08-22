@@ -1,6 +1,9 @@
 package com.cbfacademy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Year;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,5 +40,14 @@ public class AppTest {
     public void testFizzbuzz(){
         assertEquals("FizzBuzz", FizzBuzz.get(15));
     }
+    
+    @Test
+    @DisplayName("prints true")
+    public void isALeapYear() {
+        // isALeapYear year = new isALeapYear(Integer year);
+        assertTrue(LeapYear.isLeap(2000));
+    }
+
+
 
 }
